@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-consumer-deployment
+  labels:
+    app: kafka-consumer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-consumer
+  template:
+    metadata:
+      labels:
+        app: kafka-consumer
+    spec:
+      containers:
+      - name: kafka-consumer
+        image: your_docker_registry/kafka-consumer:latest
+        env:
+        - name: KAFKA_BROKER_LIST
+          value: "your_broker_list" # Replace with your Kafka broker list
+        - name: KAFKA_TOPIC
+          value: "your_topic" # Replace with your Kafka topic name
+        - name: KAFKA_GROUP_ID
+          value: "your_group_id" # Replace with your Kafka group ID
+        - name: KAFKA_AUTO_OFFSET_RESET
+          value: "earliest" # Replace with your desired offset reset value ('earliest', 'latest', 'none')
+        - name: KAFKA_CONSUMER_TIMEOUT_MS
+          value: "10000" # Replace with your desired consumer timeout in milliseconds
+        - name: KAFKA_SESSION_TIMEOUT_MS
+          value: "10000" # Replace with your desired session timeout in milliseconds
+        - name: KAFKA_HEARTBEAT_INTERVAL_MS
+          value: "3000" # Replace with your desired heartbeat interval in milliseconds
