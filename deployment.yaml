@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: kafka-consumer
-        image: your_docker_registry/kafka-consumer:latest
+        image: ballab/sz-kafka-logging-consumer:0.1
         env:
         - name: KAFKA_BROKER_LIST
           value: "your_broker_list" # Replace with your Kafka broker list
